@@ -1,4 +1,33 @@
 <resources>
-    <string name="app_name">Calc3</string>
+    <string name="app_name">Calculator</string>
     <string name="B_0">0</string>
+    <string name="B_1">1</string>
+    <string name="B_2">2</string>
+    <string name="B_3">3</string>
+    <string name="B_4">4</string>
+    <string name="B_5">5</string>
+    <string name="B_6">6</string>
+    <string name="B_7">7</string>
+    <string name="B_8">8</string>
+    <string name="B_9">9</string>
+    <string name="B_dot">.</string>
+    <string name="B_Plus">+</string>
+    <string name="B_Minus">-</string>
+    <string name="B_Umn">*</string>
+    <string name="B_Del">/</string>
+    <string name="B_Equal">=</string>
+    <string name="B_Negative">+/-</string>
+    <string name="B_Sqrt">√</string>
+    <string name="B_Pow">^</string>
+    <string name="B_Clear">C</string>
+    <string name="tvText">0</string>
+    <string name="B_BrOpen">(</string>
+    <string name="B_BrClose">)</string>
+    <string name="B_sin">sin</string>
+    <string name="B_cos">cos</string>
+    <string name="B_tan">tan</string>
+    <string name="B_log">log</string>
+    <string name="B_ln">ln</string>
+    <string name="B_Pi">пи</string>
+    <string name="B_Fact">n!</string>
 </resources>

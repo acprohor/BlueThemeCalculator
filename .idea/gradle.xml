@@ -9,7 +9,6 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/MathParser.org-mXparser-jdk17-4.1.1" />
-            <option value="$PROJECT_DIR$/StringCalc_v4.0" />
             <option value="$PROJECT_DIR$/app" />
           </set>
         </option>

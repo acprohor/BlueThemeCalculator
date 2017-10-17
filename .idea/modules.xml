@@ -4,7 +4,6 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Calc3.iml" filepath="$PROJECT_DIR$/Calc3.iml" />
       <module fileurl="file://$PROJECT_DIR$/MathParser.org-mXparser-jdk17-4.1.1/MathParser.org-mXparser-jdk17-4.1.1.iml" filepath="$PROJECT_DIR$/MathParser.org-mXparser-jdk17-4.1.1/MathParser.org-mXparser-jdk17-4.1.1.iml" />
-      <module fileurl="file://$PROJECT_DIR$/StringCalc_v4.0/StringCalc_v4.0.iml" filepath="$PROJECT_DIR$/StringCalc_v4.0/StringCalc_v4.0.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

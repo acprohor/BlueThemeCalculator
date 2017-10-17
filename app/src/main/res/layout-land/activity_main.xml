@@ -29,7 +29,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@color/primaryDarkColor"
-        android:text="."
+        android:text="@string/B_dot"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_weight="1"
@@ -43,7 +43,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@color/primaryDarkColor"
-        android:text="+/-"
+        android:text="@string/B_Negative"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_weight="1"
@@ -57,7 +57,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@color/primaryDarkColor"
-        android:text="="
+        android:text="@string/B_Equal"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_weight="1"
@@ -71,7 +71,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@color/primaryDarkColor"
-        android:text="1"
+        android:text="@string/B_1"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/button0"
         app:layout_constraintHorizontal_weight="1"
@@ -85,7 +85,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@color/primaryDarkColor"
-        android:text="2"
+        android:text="@string/B_2"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/button18"
         app:layout_constraintHorizontal_weight="1"
@@ -99,7 +99,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@color/primaryDarkColor"
-        android:text="3"
+        android:text="@string/B_3"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/button19"
         app:layout_constraintHorizontal_weight="1"
@@ -113,7 +113,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@color/primaryDarkColor"
-        android:text="+"
+        android:text="@string/B_Plus"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/button14"
         app:layout_constraintHorizontal_weight="1"
@@ -127,7 +127,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@color/primaryDarkColor"
-        android:text="4"
+        android:text="@string/B_4"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/button1"
         app:layout_constraintHorizontal_weight="1"
@@ -141,7 +141,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@color/primaryDarkColor"
-        android:text="5"
+        android:text="@string/B_5"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/button2"
         app:layout_constraintHorizontal_weight="1"
@@ -155,7 +155,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@color/primaryDarkColor"
-        android:text="6"
+        android:text="@string/B_6"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/button3"
         app:layout_constraintHorizontal_weight="1"
@@ -169,7 +169,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@color/primaryDarkColor"
-        android:text="-"
+        android:text="@string/B_Minus"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/button10"
         app:layout_constraintHorizontal_weight="1"
@@ -183,7 +183,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@color/primaryDarkColor"
-        android:text="7"
+        android:text="@string/B_7"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/button4"
         app:layout_constraintHorizontal_weight="1"
@@ -197,7 +197,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@color/primaryDarkColor"
-        android:text="8"
+        android:text="@string/B_8"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/button5"
         app:layout_constraintHorizontal_weight="1"
@@ -211,7 +211,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@color/primaryDarkColor"
-        android:text="9"
+        android:text="@string/B_9"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/button6"
         app:layout_constraintHorizontal_weight="1"
@@ -225,7 +225,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@color/primaryDarkColor"
-        android:text="*"
+        android:text="@string/B_Umn"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/button11"
         app:layout_constraintHorizontal_weight="1"
@@ -242,7 +242,7 @@
         android:editable="true"
         android:elegantTextHeight="true"
         android:filterTouchesWhenObscured="false"
-        android:text="0"
+        android:text="@string/tvText"
         android:textAlignment="viewEnd"
         android:textColor="@color/secondaryDarkColor"
         android:textIsSelectable="true"
@@ -263,7 +263,7 @@
         android:layout_height="0dp"
 
         android:background="@color/primaryDarkColor"
-        android:text="C"
+        android:text="@string/B_Clear"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/button7"
         app:layout_constraintHorizontal_weight="1"
@@ -277,7 +277,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@color/primaryDarkColor"
-        android:text="("
+        android:text="@string/B_BrOpen"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/button8"
         app:layout_constraintHorizontal_weight="1"
@@ -291,7 +291,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@color/primaryDarkColor"
-        android:text=")"
+        android:text="@string/B_BrClose"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/button9"
         app:layout_constraintHorizontal_weight="1"
@@ -305,7 +305,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@color/primaryDarkColor"
-        android:text="/"
+        android:text="@string/B_Del"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/button12"
         app:layout_constraintHorizontal_weight="1"
@@ -368,7 +368,6 @@
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginTop="0dp"
-            android:text="история подсчетов"
             android:textAlignment="textEnd"
             android:textColor="@color/secondaryDarkColor"
             app:layout_constraintHorizontal_bias="0.0"
@@ -379,6 +378,7 @@
     </ScrollView>
 
     <ScrollView
+        android:id="@+id/scrollView2"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="0dp"
@@ -386,12 +386,11 @@
         android:layout_marginRight="0dp"
         android:layout_marginTop="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintLeft_toLeftOf="@+id/guideline3"
         app:layout_constraintRight_toLeftOf="@+id/guideline2"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        android:id="@+id/scrollView2">
+        app:layout_constraintVertical_bias="0.0">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -399,19 +398,19 @@
             android:orientation="vertical">
 
             <Button
-                android:id="@+id/button15"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/primaryDarkColor"
-                android:text="√"
-                android:textSize="24sp" />
-
-            <Button
                 android:id="@+id/button16"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/primaryDarkColor"
-                android:text="^"
+                android:text="@string/B_Sqrt"
+                android:textSize="24sp" />
+
+            <Button
+                android:id="@+id/button15"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/primaryDarkColor"
+                android:text="@string/B_Pow"
                 android:textSize="24sp" />
 
 
@@ -420,7 +419,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/primaryDarkColor"
-                android:text="sin"
+                android:text="@string/B_sin"
                 android:textAppearance="@style/TextAppearance.AppCompat.Widget.DropDownItem"
                 tools:textAllCaps="false" />
 
@@ -429,7 +428,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/primaryDarkColor"
-                android:text="cos"
+                android:text="@string/B_cos"
                 android:textAppearance="@style/TextAppearance.AppCompat.Widget.DropDownItem" />
 
             <Button
@@ -437,7 +436,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/primaryDarkColor"
-                android:text="tan"
+                android:text="@string/B_tan"
                 android:textAppearance="@style/TextAppearance.AppCompat.Widget.DropDownItem"
                 tools:textAllCaps="false" />
 
@@ -446,7 +445,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/primaryDarkColor"
-                android:text="log"
+                android:text="@string/B_log"
                 android:textAppearance="@style/TextAppearance.AppCompat.Widget.DropDownItem"
                 tools:textAllCaps="false" />
 
@@ -455,7 +454,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/primaryDarkColor"
-                android:text="ln"
+                android:text="@string/B_ln"
                 android:textAppearance="@style/TextAppearance.AppCompat.Widget.DropDownItem"
                 tools:textAllCaps="false" />
 
@@ -464,7 +463,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/primaryDarkColor"
-                android:text="пи"
+                android:text="@string/B_Pi"
                 android:textAppearance="@style/TextAppearance.AppCompat.Widget.DropDownItem"
                 tools:textAllCaps="false" />
 
@@ -473,7 +472,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/primaryDarkColor"
-                android:text="n!"
+                android:text="@string/B_Fact"
                 android:textAppearance="@style/TextAppearance.AppCompat.Widget.DropDownItem"
                 tools:textAllCaps="false" />
         </LinearLayout>
