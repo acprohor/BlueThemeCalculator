@@ -251,6 +251,7 @@ public class MainActivity extends AppCompatActivity {
                         signSet = false;
                     }
                 }
+
                 clearValue();
                 String s = String.valueOf(textView1.getText());
 
