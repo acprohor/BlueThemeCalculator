@@ -1,4 +1,0 @@
-configurations.maybeCreate("default")
-artifacts.add("default", file('StringCalc_v4.0.jar'))
-dependencies {
-}

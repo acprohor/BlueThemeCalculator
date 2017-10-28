@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
                             signSet = false;
                         }
                         else {
-                            showToast("Максимум символов");
+                            showToast(getString(R.string.limit_of_chars));
                         }
                     }
 
@@ -114,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                         textView3.setText(textView3.getText() + res + button.getText());
                         textView1.setText("");
-                        textView1.setText(button.getText());                                      //выводить знак который будет активный и который потом стирается при вводе нового значения
+                        textView1.setText(button.getText());                                        //выводить знак который будет активный и который потом стирается при вводе нового значения
                         negativeStatus = false;
                         resultUsed = false;
                         buttonPressedCounter = 0;
@@ -122,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
                         signSet = true;
                     }
                     if(signSet){
-                        textView3.setText(removeLastChar(String.valueOf(textView3.getText())));     // есои знак установлен, стирает его из 3 и устанавливает новый.
+                        textView3.setText(removeLastChar(String.valueOf(textView3.getText())));     // если знак установлен, стирает его из 3 и устанавливает новый.
                         textView3.setText(textView3.getText().toString() + button.getText());
                         textView1.setText(button.getText());
                     }
@@ -135,18 +135,18 @@ public class MainActivity extends AppCompatActivity {
         buttonSqrt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String res = String.valueOf( textView1.getText());
-                if (!negativeStatus && !res.isEmpty() && !signSet){
-                    textView3.setText(textView3.getText() + "sqrt(" + res + ")");
-                    textView1.setText("");
-                    negativeStatus = false;
-                    resultUsed = true;      // true для того чтобы можно было вводить знак после вычисления корня
-                    buttonPressedCounter = 0;
-                    buttonZeroCounter = 0;
-                }
-                else {
-                    String notif = "нельзя извлечь корень";
-                    showToast(notif);
+                if (textView1.getText().length() != 0) {
+                    String res = String.valueOf(textView1.getText());
+                    if (!textView1.getText().toString().substring(0, 1).equals("-") && !signSet) {
+                        textView3.setText(textView3.getText() + "sqrt(" + res + ")");
+                        textView1.setText("");
+                        negativeStatus = false;
+                        resultUsed = true;      // true для того чтобы можно было вводить знак после вычисления корня
+                        buttonPressedCounter = 0;
+                        buttonZeroCounter = 0;
+                    } else {
+                        showToast(getString(R.string.Notification_sqrt));
+                    }
                 }
             }
         });
@@ -232,47 +232,38 @@ public class MainActivity extends AppCompatActivity {
                     resultUsed = false;
                 }
 
-                if (bracketOpenCounter > 0){
-                    while (bracketOpenCounter > 1) {
-                        textView3.setText(textView3.getText() + ")");
-                        bracketOpenCounter--;
-                    }
-                }
-
-                if (signSet){
-                    if (textView3.getText().toString().length() == 0){
-                        textView3.setText(removeLastChar(textView1.getText().toString()));
-                        textView1.setText("");
-                        signSet = false;
-                    }
-                    else {
-                        textView3.setText(removeLastChar(String.valueOf(textView3.getText())));
-                        textView1.setText("");
-                        signSet = false;
-                    }
-                }
-
                 clearValue();
-                String s = String.valueOf(textView1.getText());
 
                 if (negativeStatus && !funcUsed){
-                    s = "(" + s + ")";
+                    textView1.setText("(" + textView1.getText() + ")");
                 }
 
                 if (textView3.getText().length() != 0 || textView1.getText().length() != 0) {
-                    String a = String.valueOf(textView3.getText());
 
-                    String example = a + s;
+                    if (bracketOpenCounter > 0){
+                        while (bracketOpenCounter > 0) {
+                            textView3.setText(textView3.getText() + ")");
+                            bracketOpenCounter--;
+                        }
+                    }
+
+                    textView3.setText(textView3.getText().toString().replace("()","(0)"));
+                    textView3.setText(textView3.getText().toString().replace(")(",")*("));
+
+                    String example = textView3.getText().toString() + textView1.getText().toString();
+
+                    while (lastCharIsSign(example)){
+                        example = removeLastChar(example);
+                    }
 
                     Expression one = new Expression(example);
 
-                    String answer = "";
                     try {
-                        answer = String.valueOf(new BigDecimal("" + one.calculate()).setScale(10, BigDecimal.ROUND_HALF_UP));
-                        textView1.setText(String.valueOf(answer));
+                        String answer = String.valueOf(new BigDecimal("" + one.calculate()).setScale(9, BigDecimal.ROUND_HALF_UP));
+                        textView1.setText(answer);
                         clearValue();
                     } catch (Exception e) {
-                        textView1.setText("ERROR");
+                        textView1.setText(R.string.error);
                         error = true;
                     }
 
@@ -293,7 +284,7 @@ public class MainActivity extends AppCompatActivity {
                     buttonZeroCounter = 0;
                 }
                 else {
-                    showToast("нечего вычислять");
+                    showToast(getString(R.string.notification_nothing_to_show));
                 }
             }
         });
@@ -322,15 +313,22 @@ public class MainActivity extends AppCompatActivity {
             buttonBracketOpen.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (textView1.getText().length() != 0){
+                    if (textView1.getText().length() != 0) {
+                        if (signSet) {
+                            textView1.setText("");
+                        }
                         textView3.setText(textView3.getText() + textView1.getText().toString());
                         textView1.setText("");
+
+                        if (!signSet && !textView3.getText().toString().substring(textView3.getText().length() - 1, textView3.getText().length()).equals("(")) {
+                            textView3.setText(textView3.getText() + "*");
+                        }
                     }
-                    if (!signSet && !textView3.getText().toString().substring(textView3.getText().length()-1,textView3.getText().length()).equals("(")){
-                        textView3.setText(textView3.getText() + "*");
+                    if (bracketOpenCounter < 6) {
+                        textView3.setText(textView3.getText() + buttonBracketOpen.getText().toString());
+                        bracketOpenCounter++;
                     }
-                    textView3.setText(textView3.getText() + buttonBracketOpen.getText().toString());
-                    bracketOpenCounter++;
+
                 }
             });
 
@@ -338,13 +336,11 @@ public class MainActivity extends AppCompatActivity {
             buttonBracketClose.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (bracketOpenCounter != 0 && ( !checkLastChar("+") || !checkLastChar("-") || !checkLastChar("*") || !checkLastChar("/"))) {
-                        if (!signSet && textView1.getText().length() != 0) {
-                            textView3.setText(textView3.getText() + textView1.getText().toString() + buttonBracketClose.getText().toString());
-                            textView1.setText("");
-                            resultUsed = true;
-                            bracketOpenCounter--;
-                        }
+                    if (bracketOpenCounter != 0 && !signSet) {
+                        textView3.setText(textView3.getText() + textView1.getText().toString() + buttonBracketClose.getText().toString());
+                        textView1.setText("");
+                        resultUsed = true;
+                        bracketOpenCounter--;
                     }
                 }
             });
@@ -394,6 +390,7 @@ public class MainActivity extends AppCompatActivity {
                     if (textView1.length() != 0){
                         textView3.setText(textView3.getText().toString() + textView1.getText().toString() + "!");
                         textView1.setText("");
+                        funcUsed = true;
                     }
                 }
             });
@@ -403,7 +400,7 @@ public class MainActivity extends AppCompatActivity {
 
     //Удаление последнего символа в нижнем поле
     public void deleteSymbol(TextView tV) {
-        StringBuffer stringBuffer = new StringBuffer(tV.getText().toString());
+        StringBuilder stringBuffer = new StringBuilder(tV.getText().toString());
         if (stringBuffer.length() != 0) {
             stringBuffer.delete(tV.getText().length() - 1, tV.getText().length());
             tV.setText(stringBuffer.toString());
@@ -450,6 +447,12 @@ public class MainActivity extends AppCompatActivity {
         signSet = false;
         funcUsed = false;
         error = false;
+    }
+
+    public boolean lastCharIsSign (String text){
+        return text.substring(text.length() - 1, text.length()).equals("+") || text.substring(text.length() - 1, text.length()).equals("-") ||
+                text.substring(text.length() - 1, text.length()).equals("*") || text.substring(text.length() - 1, text.length()).equals("/") ||
+                text.substring(text.length() - 1, text.length()).equals("^");
     }
 
     protected void onSaveInstanceState (Bundle outState){

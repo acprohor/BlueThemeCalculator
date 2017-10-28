@@ -30,4 +30,8 @@
     <string name="B_ln">ln</string>
     <string name="B_Pi">пи</string>
     <string name="B_Fact">n!</string>
+    <string name="Notification_sqrt">нельзя извлечь корень</string>
+    <string name="error">ERROR</string>
+    <string name="limit_of_chars">Максимум символов</string>
+    <string name="notification_nothing_to_show">нечего вычислять</string>
 </resources>
