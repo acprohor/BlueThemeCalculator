@@ -28,7 +28,7 @@
     <string name="B_tan">tan</string>
     <string name="B_log">log</string>
     <string name="B_ln">ln</string>
-    <string name="B_Pi">пи</string>
+    <string name="B_Pi">π</string>
     <string name="B_Fact">n!</string>
     <string name="Notification_sqrt">нельзя извлечь корень</string>
     <string name="error">ERROR</string>

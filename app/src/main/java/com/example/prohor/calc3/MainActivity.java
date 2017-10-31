@@ -1,7 +1,7 @@
 package com.example.prohor.calc3;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
@@ -9,11 +9,11 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.mariuszgromada.math.mxparser.*;
+
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
-
-import org.mariuszgromada.math.mxparser.*;
 
 import static android.content.res.Configuration.ORIENTATION_LANDSCAPE;
 
@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
                     else {
                         if (buttonPressedCounter < 12) {
                             String res = String.valueOf(textView1.getText());
-                            textView1.setText(res + button.getText());
+                            textView1.setText(String.format("%s%s", res, button.getText()));
                             buttonPressedCounter++;
                             signSet = false;
                         }
@@ -112,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
                         if (negativeStatus) {
                             res = "(" + res + ")";
                         }
-                        textView3.setText(textView3.getText() + res + button.getText());
+                        textView3.setText(String.format("%s%s%s", textView3.getText(), res, button.getText()));
                         textView1.setText("");
                         textView1.setText(button.getText());                                        //выводить знак который будет активный и который потом стирается при вводе нового значения
                         negativeStatus = false;
@@ -123,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                     if(signSet){
                         textView3.setText(removeLastChar(String.valueOf(textView3.getText())));     // если знак установлен, стирает его из 3 и устанавливает новый.
-                        textView3.setText(textView3.getText().toString() + button.getText());
+                        textView3.setText(String.format("%s%s", textView3.getText().toString(), button.getText()));
                         textView1.setText(button.getText());
                     }
 
@@ -138,7 +138,7 @@ public class MainActivity extends AppCompatActivity {
                 if (textView1.getText().length() != 0) {
                     String res = String.valueOf(textView1.getText());
                     if (!textView1.getText().toString().substring(0, 1).equals("-") && !signSet) {
-                        textView3.setText(textView3.getText() + "sqrt(" + res + ")");
+                        textView3.setText(String.format("%ssqrt(%s)", textView3.getText(), res));
                         textView1.setText("");
                         negativeStatus = false;
                         resultUsed = true;      // true для того чтобы можно было вводить знак после вычисления корня
@@ -168,7 +168,7 @@ public class MainActivity extends AppCompatActivity {
                     System.out.println("");
                 }
                 else {
-                    textView1.setText(textView1.getText().toString() + buttonZeroNumber.getText());
+                    textView1.setText(String.format("%s%s", textView1.getText().toString(), buttonZeroNumber.getText()));
                     buttonZeroCounter++;
                     signSet = false;
                     //buttonPressedCounter++;
@@ -182,16 +182,27 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                if (error){
+                    textView1.setText("");
+                    error = false;
+                }
+
                 if (textView1.length() == 0 && textView3.length() != 0){
+                    if (lastCharEqual(textView3,")")){
+                        bracketOpenCounter--;
+                    }
                     textView1.setText(removeLastChar(textView3.getText().toString()));
                     textView3.setText("");
                 }
                 else {
+                    if (lastCharEqual(textView1,")")){
+                        bracketOpenCounter--;
+                    }
                     textView1.setText(removeLastChar(String.valueOf(textView1.getText())));
                     dropAllFlags();
                     buttonPressedCounter = 0;
                     buttonZeroCounter = 0;
-                    bracketOpenCounter = 0;
+                    //bracketOpenCounter = 0;
                 }
             }
         });
@@ -215,8 +226,8 @@ public class MainActivity extends AppCompatActivity {
         buttonDot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!textView1.getText().toString().contains(".") && textView1.getText().length() != 0) {
-                        textView1.setText(textView1.getText() + ".");
+                if (!textView1.getText().toString().contains(".") && textView1.getText().length() != 0 && !signSet && !error) {
+                        textView1.setText(String.format("%s.", textView1.getText()));
                         buttonPressedCounter++;
                 }
             }
@@ -235,14 +246,14 @@ public class MainActivity extends AppCompatActivity {
                 clearValue();
 
                 if (negativeStatus && !funcUsed){
-                    textView1.setText("(" + textView1.getText() + ")");
+                    textView1.setText(String.format("(%s)", textView1.getText()));
                 }
 
                 if (textView3.getText().length() != 0 || textView1.getText().length() != 0) {
 
                     if (bracketOpenCounter > 0){
                         while (bracketOpenCounter > 0) {
-                            textView3.setText(textView3.getText() + ")");
+                            textView3.setText(String.format("%s)", textView3.getText()));
                             bracketOpenCounter--;
                         }
                     }
@@ -267,8 +278,7 @@ public class MainActivity extends AppCompatActivity {
                         error = true;
                     }
 
-                    String temp = String.valueOf(textView2.getText());
-                    textView2.setText(temp + "\n" + example + " = " + textView1.getText());
+                    textView2.setText(String.format("%s\n%s = %s", textView2.getText(), example, textView1.getText()));
 
                     textView3.setText("");
                     scrollView.postDelayed(new Runnable() {
@@ -293,14 +303,12 @@ public class MainActivity extends AppCompatActivity {
         buttonNegative.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (textView1.getText().length() != 0 && !textView1.getText().toString().equals("0") && !signSet) {
+                if (textView1.getText().length() != 0 && !textView1.getText().toString().equals("0") && !signSet && !error) {
                     if (textView1.getText().toString().substring(0, 1).equals("-")) {
-                        String box = String.valueOf(textView1.getText());
-                        textView1.setText(box.substring(1));
+                        textView1.setText(textView1.getText().toString().substring(1));
                         negativeStatus = false;
                     } else {
-                        String box = String.valueOf(textView1.getText());                               // если firstArg = false ставить скобки вокруг аргумена
-                        textView1.setText("-" + box);
+                        textView1.setText(String.format("-%s", textView1.getText()));
                         negativeStatus = true;
                     }
                 }
@@ -317,15 +325,15 @@ public class MainActivity extends AppCompatActivity {
                         if (signSet) {
                             textView1.setText("");
                         }
-                        textView3.setText(textView3.getText() + textView1.getText().toString());
+                        textView3.setText(String.format("%s%s", textView3.getText(), textView1.getText().toString()));
                         textView1.setText("");
 
                         if (!signSet && !textView3.getText().toString().substring(textView3.getText().length() - 1, textView3.getText().length()).equals("(")) {
-                            textView3.setText(textView3.getText() + "*");
+                            textView3.setText(String.format("%s*", textView3.getText()));
                         }
                     }
                     if (bracketOpenCounter < 6) {
-                        textView3.setText(textView3.getText() + buttonBracketOpen.getText().toString());
+                        textView3.setText(String.format("%s%s", textView3.getText(), buttonBracketOpen.getText().toString()));
                         bracketOpenCounter++;
                     }
 
@@ -337,7 +345,7 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     if (bracketOpenCounter != 0 && !signSet) {
-                        textView3.setText(textView3.getText() + textView1.getText().toString() + buttonBracketClose.getText().toString());
+                        textView3.setText(String.format("%s%s%s", textView3.getText(), textView1.getText().toString(), buttonBracketClose.getText().toString()));
                         textView1.setText("");
                         resultUsed = true;
                         bracketOpenCounter--;
@@ -352,7 +360,8 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         if (textView1.length() != 0 && !signSet){
-                            textView3.setText(textView3.getText() + buttonFunc.getText().toString() + "(" + textView1.getText() + ")");
+                            clearValue();
+                            textView3.setText(String.format("%s%s(%s)", textView3.getText(), buttonFunc.getText().toString(), textView1.getText()));
                             textView1.setText("");
                             funcUsed = true;
                             resultUsed = true;
@@ -366,7 +375,7 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     if (textView1.length() != 0 && !signSet){
-                        textView3.setText(textView3.getText() + buttonLog.getText().toString() + "2(" + textView1.getText() + ")");
+                        textView3.setText(String.format("%s%s2(%s)", textView3.getText(), buttonLog.getText().toString(), textView1.getText()));
                         textView1.setText("");
                         funcUsed = true;
                         resultUsed = true;
@@ -388,7 +397,7 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     if (textView1.length() != 0){
-                        textView3.setText(textView3.getText().toString() + textView1.getText().toString() + "!");
+                        textView3.setText(String.format("%s%s!", textView3.getText().toString(), textView1.getText().toString()));
                         textView1.setText("");
                         funcUsed = true;
                     }
@@ -411,15 +420,20 @@ public class MainActivity extends AppCompatActivity {
     // Очистка нижнего поля от лишних нулей и точек
     public void clearValue (){
         if (textView1.getText().toString().contains(".")) {
+            label:
             while (true) {
                 int i = textView1.getText().length();
-                String s = textView1.getText().toString().substring(i-1, i);                        // проверяет последний символ вместо i длинну textview
-                if (s.equals("0")) {
-                    deleteSymbol(textView1);
-                } else if (s.equals(".")) {
-                    deleteSymbol(textView1);
-                    break;
-                } else break;
+                String s = textView1.getText().toString().substring(i - 1, i);                        // проверяет последний символ вместо i длинну textView
+                switch (s) {
+                    case "0":
+                        deleteSymbol(textView1);
+                        break;
+                    case ".":
+                        deleteSymbol(textView1);
+                        break label;
+                    default:
+                        break label;
+                }
             }
         }
     }
@@ -437,8 +451,8 @@ public class MainActivity extends AppCompatActivity {
         toast.show();
     }
 
-    public boolean checkLastChar (String a){
-        return textView1.getText().toString().substring(textView1.getText().length()-1, textView1.getText().length()).equals(a);
+    public boolean lastCharEqual (TextView tv, String a){
+        return tv.getText().toString().substring(tv.getText().length()-1, tv.getText().length()).equals(a);
     }
 
     public void dropAllFlags (){
